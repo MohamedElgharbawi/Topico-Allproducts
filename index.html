@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+    <link rel="shortcut icon" type="image/x-icon" href="imgs/image e-commrce/img/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        #TheProducts {
+            gap: 20px;
+            width: calc(100% - 350px);
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .filter {
+            width: 300px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 5px 5px 10px #94949428;
+            height: fit-content;
+            display: block;
+            position: relative;
+        }
+        .filter h2 , 
+        .filter h3 {
+            color: var(--element-color);
+        }
+        #para {
+            color: var(--black-color);
+            margin-top: 15px;
+            font-weight: 700;
+        }
+        #TheProducts .product {
+            width: calc((100% - 40px) / 3) !important;
+            height: fit-content;
+            padding: 10px !important;
+        }
+        #text h1 {
+            color: var(--main-color);
+            font-weight: 800;
+        }
+        .first-sec button {
+            height: fit-content;
+            padding: 8px 25px;
+            border: none;
+            outline: none;
+            background: var(--main-color);
+            border-radius: 5px;
+            display: none;
+            color: var(--black-color);
+        }
+        .filter h2 {
+            font-size: 23px;
+            font-weight: 700;
+        }
+        .filter h2 i {
+            font-size: 15px;
+            color: var(--main-color);
+            cursor: pointer;
+            display: none;
+        }
+        .filter h3 {
+            font-size: 18px;
+            font-weight: 900;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .form {
+            gap: 10px;
+        }
+        .form input:hover {
+            cursor: pointer;
+        }
+        .form input:checked {
+            accent-color: var(--main-color);
+        }
+        .colors .color label {
+            width: 15px;
+            height: 15px;
+            border-radius: 5px;
+        }
+        .colors .color label[for="red"] {
+            background: red;
+        } 
+        .colors .color label[for="blue"] {
+            background: blue;
+        } 
+        .colors .color label[for="green"] {
+            background: green;
+        } 
+        .colors .color label[for="black"] {
+            background: black;
+        } 
+        @media (width >= 992px) {
+            .filter {
+                display: block !important;
+                position: relative !important;
+            }
+        }
+        @media (width < 992px) {
+            .filter h2 i {
+                display: block;
+            }
+            .first-sec .container {
+                padding: 50px 0;
+            }
+            #text h1 {
+                font-size: 26px;
+            }
+            .first-sec .filter {
+                display: none;
+            }
+            .first-sec button {
+                display: block;
+                top: 0;
+                left: 0;
+            }
+            #TheProducts {
+                width: 100%;
+            }
+        }
+        @media (width < 768px) {
+            #TheProducts .product {
+                width: calc((100% - 20px) /  2) !important;
+                margin: 0 !important;
+            }
+            #text h1 {
+                font-size: 20px;
+            }
+        }
+        @media (width < 576px) {
+            .first-sec button {
+                left: 40px;
+            }
+            #TheProducts {
+                padding: 0px 40px !important;
+            }
+        }
+        @media (width < 450px) {
+            .first-sec button {
+                left: 50px;
+            }
+            #text {
+                padding: 30px 0 !important;
+            }
+            #text h1 {
+                font-size: 14px;
+            }
+            #text p {
+                font-size: 12px !important;
+            }
+            #TheProducts .product {
+                width: calc(100% - 100px) !important;
+            }
+            #TheProducts {
+                padding: 0px !important;
+            }
+        }
+        #mode {
+        border: none;
+        outline: none;
+        width: 38px !important;
+        height: 38px !important;
+        background: var(--main-color);
+        border-radius: 50%;
+        transition: .3s;
+        }
+        #mode:hover {
+            background-color: #e5a700;
+        }
+        #mode .none {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="#" class="to-Top position-fixed overflow-hidden"><i class="fa-solid fa-arrow-up"></i></a>
+    <header class="position-fixed">
+        <div class="container d-flex justify-content-between align-items-center">   
+            <div class="logo">
+                <a href="https://mohamedelgharbawi.github.io/Topico-Home/"><img src="imgs/image e-commrce/img/logo-black.png" alt="logo-black" class="logo-1"></a>
+            </div>
+                <form action="" class="search position-relative">
+                    <input type="search" placeholder="Search For Products...">
+                    <button type="submit" class="position-absolute">Search</button>
+                </form>
+            <div class="cart-header d-flex align-items-center">
+                <div class="icon-cart position-relative d-flex justify-content-center align-items-center" onclick="addActive();set_bg_active()">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="count-items position-absolute d-flex justify-content-center align-items-center">0</span>
+                </div>
+                <div class="total-price">
+                    <p>My Cart : <span class="final-price">$0</span></p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="container d-flex justify-content-between align-items-center">
+            <i class="fa-solid fa-bars"></i>
+            <nav>
+                <div class="img_with_icon d-flex align-items-center justify-content-between d-none">
+                    <a href="https://mohamedelgharbawi.github.io/Topico-Home/"><img src="imgs/image e-commrce/img/logo-black.png" alt="" class="logo-2"></a>
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </div>
+                <ul class="d-flex justify-content-center align-items-center">
+                    <li><a href="https://mohamedelgharbawi.github.io/Topico-Home/">Home</a></li>
+                    <li class="active"><a href="https://mohamedelgharbawi.github.io/Topico-Allproducts/">All Products</a></li>
+                    <li><a href="https://mohamedelgharbawi.github.io/Topico-Item/">ITem</a></li>
+                    <li><a href="https://mohamedelgharbawi.github.io/Topico-Checkout/">Checkout</a></li>
+                </ul>
+            </nav>
+            <span></span>
+            <div class="login_sign-up d-flex align-items-center">
+                <a href="https://mohamedelgharbawi.github.io/Topico-Login/">login<i class="fa-solid fa-right-to-bracket ms-2"></i></a>
+                <a href="https://mohamedelgharbawi.github.io/Topico-Sign-up/">sign-up<i class="fa-solid fa-user-plus ms-2"></i></a>
+                <button class="d-flex justify-content-center align-items-center" id="mode">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#E8EAED" class="dark"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#E8EAED" class="light none"><path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+    <div class="bg" onclick="remove_bg_active();removeActive()"></div>
+    <div class="my-cart position-fixed d-flex flex-column justify-content-between p-3">
+        <div class="head d-flex justify-content-between align-items-center pb-3">
+            <p class="m-0"><span>My Item </span><span class="Span_Two">(0 Item In Cart)</span></p>
+            <i class="fa-solid fa-circle-xmark" onclick="removeActive();remove_bg_active()"></i>
+        </div>
+        <div class="body py-3 position-relative overflow-auto">
+            
+        </div>
+        <div class="foot pt-3">
+            <p class="d-flex justify-content-between">Cart subtotal <span class="final-price">$0</span></p>
+            <button class="mb-2 checkout">proceed to checkout</button>
+            <button>shop more</button>
+        </div>
+    </div>
+    <div id="text" class="py-5 text-center">
+        <div class="container">
+            <h1>Experience The Future Of Technology With Our Topico</h1>
+            <p id="para">Find Every Thing You Need To Transform Your Home Into A Smart, Connected Space. Our Topico Store Offers A Wide Range Of Devices To Fit Your Needs</p>
+        </div>
+    </div>
+    <section class="position-relative first-sec">
+        <div class="container d-flex justify-content-between position-relative">
+                <button class="position-absolute">Filter <i class="fa-solid fa-filter"></i></button>
+                <div class="filter p-3">
+                    <h2 class="d-flex align-items-center justify-content-between">Filter <i class="fa-solid fa-circle-xmark"></i> </h2>
+                    <div class="categories">
+                        <h3 class="mt-4">Categorie</h3>
+                        <form class="d-flex flex-column form">
+                            <div class="categ d-flex align-items-center justify-content-between">
+                                <label for="phone">Phones</label>
+                                <input type="checkbox" id="phone" class="cat">
+                            </div>
+                            <div class="categ d-flex align-items-center justify-content-between">
+                                <label for="tablet">Tablets</label>
+                                <input type="checkbox" id="tablet" class="cat">
+                            </div>
+                            <div class="categ d-flex align-items-center justify-content-between">
+                                <label for="electronic">Electronics</label>
+                                <input type="checkbox" id="electronic" class="cat">
+                            </div>
+                            <div class="categ d-flex align-items-center justify-content-between">
+                                <label for="tv">Tv</label>
+                                <input type="checkbox" id="tv" class="cat">
+                            </div>
+                            <div class="categ d-flex align-items-center justify-content-between">
+                                <label for="fashion">Fashion</label>
+                                <input type="checkbox" id="fashion" class="cat">
+                            </div>
+                            <div class="categ d-flex align-items-center justify-content-between">
+                                <label for="watch">Watches</label>
+                                <input type="checkbox" id="watch" class="cat">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="brands">
+                        <h3 class="mt-4">Brand</h3>
+                        <form class="d-flex flex-column form">
+                            <div class="brand d-flex align-items-center justify-content-between">
+                                <label for="apple">Apple</label>
+                                <input type="checkbox" id="apple" class="bran">
+                            </div>
+                            <div class="brand d-flex align-items-center justify-content-between">
+                                <label for="samsung">Samsung</label>
+                                <input type="checkbox" id="samsung" class="bran">
+                            </div>
+                            <div class="brand d-flex align-items-center justify-content-between">
+                                <label for="intel">Intel</label>
+                                <input type="checkbox" id="intel" class="bran">
+                            </div>
+                            <div class="brand d-flex align-items-center justify-content-between">
+                                <label for="oppo">Oppo</label>
+                                <input type="checkbox" id="oppo" class="bran">
+                            </div>
+                            <div class="brand d-flex align-items-center justify-content-between">
+                                <label for="xiaomi">Xiaomi</label>
+                                <input type="checkbox" id="xiaomi" class="bran">
+                            </div>
+                            <div class="brand d-flex align-items-center justify-content-between">
+                                <label for="huawei">Huawei</label>
+                                <input type="checkbox" id="huawei" class="bran">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="colors">
+                        <h3 class="mt-4">Color</h3>
+                        <form class="d-flex flex-column form">
+                            <div class="color d-flex align-items-center justify-content-between">
+                                <label for="red"></label>
+                                <input type="checkbox" id="red" class="colo">
+                            </div>
+                            <div class="color d-flex align-items-center justify-content-between">
+                                <label for="blue"></label>
+                                <input type="checkbox" id="blue" class="colo">
+                            </div>
+                            <div class="color d-flex align-items-center justify-content-between">
+                                <label for="black"></label>
+                                <input type="checkbox" id="black" class="colo">
+                            </div>
+                            <div class="color d-flex align-items-center justify-content-between">
+                                <label for="green"></label>
+                                <input type="checkbox" id="green" class="colo">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="TheProducts" class="products py-4 position-relative mt-5 d-flex flex-wrap justify-content-center"></div>
+        </div>
+    </section>
+    <footer class="mt-5 ">
+        <div class="container d-flex align-items-center justify-content-between py-4">
+            <div class="first-row Row">
+                <a href="https://mohamedelgharbawi.github.io/Topico-Home/"><img src="imgs/image e-commrce/img/logo-white.png" alt=""></a>
+                <div class="content d-flex align-items-center my-3">
+                    <i class="fa-solid fa-headset"></i>
+                    <div class="text">
+                        <h5>Hot Line Free 24/24:</h5>
+                        <h6 class="mb-0">(+100) 123 456 7890</h6>
+                    </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, mollitia!</p>
+            </div>
+            <div class="second-row Row">
+                <h5 class="mb-2">FAGS & Help</h5>
+                <ul class="m-0 p-0">
+                    <li><a href="#">F.A.G.S</a></li>
+                    <li><a href="#">Ordering Tracking</a></li>
+                    <li><a href="#">Contacts</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+            <div class="third-row Row">
+                <h5 class="mb-2">Shipping & Delivery</h5>
+                <ul class="m-0 p-0">
+                    <li><a href="#">Delivery Information</a></li>
+                    <li><a href="#">Discount</a></li>
+                    <li><a href="#">Payment & Shipping</a></li>
+                    <li><a href="#">Estimated Delivery Time</a></li>
+                    <li><a href="#">Shipping Guide</a></li>
+                </ul>
+            </div>
+            <div class="fourth-row Row">
+                <h5 class="mb-2">Information</h5>
+                <ul class="m-0 p-0">
+                    <li><a href="#">Popular</a></li>
+                    <li><a href="#">Our Services</a></li>
+                    <li><a href="#">Your Account</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Condition</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bottom-footer py-2">
+            <div class="container mt-4 d-flex align-items-center justify-content-between">
+                    <p>Copyright &copy; <span class="fw-bold">Topico.</span> All Rights Reserved <span class="date"></span></p>
+                    <div class="payment-img">
+                        <img src="imgs/image e-commrce/img/payment-1.png" alt="">
+                        <img src="imgs/image e-commrce/img/payment-2.png" alt="">
+                        <img src="imgs/image e-commrce/img/payment-3.png" alt="">
+                        <img src="imgs/image e-commrce/img/payment-4.png" alt="">
+                    </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
